@@ -12,9 +12,7 @@ import GoogleMaps
 
 class ViewController: UIViewController, UISearchBarDelegate,LocateOnTheMap, GMSAutocompleteFetcherDelegate {
     
-    func locateWithLongitude(_ lon: Double, andLatitude lat: Double, andTitle title: String) {
-        
-    }
+    
     
     
     public func didFailAutocompleteWithError(_ error: Error) {
@@ -80,18 +78,19 @@ class ViewController: UIViewController, UISearchBarDelegate,LocateOnTheMap, GMSA
         self.present(searchController, animated: true, completion: nil)
     }
     
-    func locateWithLong(lon: String, andLatitude lat: String, andAddress address: String) {
+        func locateWithLongitude(_ lon:Double, andLatitude lat:Double, andTitle title: String) {
         DispatchQueue.main.async {
             
             let latDouble = Double(lat)
             let lonDouble = Double(lon)
             self.googleMapsView.clear()
-            let position = CLLocationCoordinate2D(latitude: latDouble ?? 20.0, longitude: lonDouble ?? 10.0)
+            let position = CLLocationCoordinate2D(latitude: latDouble , longitude: lonDouble )
             let marker = GMSMarker(position: position)
-            let camera = GMSCameraPosition.camera(withLatitude: latDouble ?? 20.0, longitude: lonDouble ?? 10.0, zoom: 15)
+            let camera = GMSCameraPosition.camera(withLatitude: latDouble , longitude: lonDouble , zoom: 18)
             self.googleMapsView.camera = camera
-            marker.title = "Address: \(String(describing: self.title)))"
-            //marker.title = "Address : \(String(describing: self.title))"
+           // ("\(status)")
+            //marker.title = title
+            marker.title = "Destination : \(title))"
             marker.map = self.googleMapsView
         }
     }
