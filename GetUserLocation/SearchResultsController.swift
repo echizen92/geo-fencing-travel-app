@@ -48,12 +48,20 @@ class SearchResultsController: UITableViewController{
         return cell
     }
     
-    override func tableView(_ tableView: UITableView,
+   override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath)
     {
         self.dismiss(animated: true, completion: nil)
-        let urlpath = "https://maps.googleapis.com/maps/api/geocode/json?address=\(self.searchResults[indexPath.row])&sensor=false".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let url = URL(string: urlpath!)
+        
+        guard let correctedAddress = self.searchResults[indexPath.row].addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            else {
+            print("Error. cannot cast name into String")
+            return
+        }
+       // let urlpath = "https://maps.googleapis.com/maps/api/geocode/json?address=\(self.searchResults[indexPath.row])&sensor=false".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+           let urlpath =  "https://maps.googleapis.com/maps/api/geocode/json?address=\(correctedAddress)&sensor=false&key=\(self.googleAPIKey)"
+        
+        let url = URL(string: urlpath)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) -> Void in
             do {
                 if data != nil{
