@@ -12,7 +12,7 @@ protocol LocateOnTheMap{
 }
 
 class SearchResultsController: UITableViewController{
-    let googleAPIKey = "AIzaSyCihv-fGphTYd6g9ojb3IYYKooF0q1Y-WQ"
+    let googleAPIKey = "API Key"
     var searchResults: [String]!
     var delegate: LocateOnTheMap!
     
