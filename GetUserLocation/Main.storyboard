@@ -37,6 +37,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Address" id="ROk-HK-I7r">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="y8K-7t-R69">
+                            <connections>
+                                <action selector="AddGeofence:" destination="BYZ-38-t0r" id="AHY-pN-NGe"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="bm3-cP-5fO">
                             <connections>
                                 <action selector="searchWithAddress:" destination="BYZ-38-t0r" id="SXE-8b-dRi"/>
